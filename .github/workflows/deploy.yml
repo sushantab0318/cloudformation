@@ -34,7 +34,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.ACCESS_KEY_SECRET }}
           aws-region: us-east-1
 
-      # Deploy to AWS CloudFormation
+      # Deploy to AWS CloudFormation demo
       - name: Deploy to AWS CloudFormation
         uses: aws-actions/aws-cloudformation-github-deploy@v1
         with:
