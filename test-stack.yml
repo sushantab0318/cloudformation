@@ -1,9 +1,9 @@
 ---
 Mappings:
   RegionEC2InstanceImageMap:
-    us-east-2:
-      HVM64: ami-02de934ca4f3289e0 
-      HVM32: ami-0233c2d874b811deb
+    us-east-1:
+      HVM64: ami-079db87dc4c10ac91 
+      HVM32: ami-02cd6549baea35b55
     ap-southeast-1:
       HVM64: ami-0390917f7df0de28c
       HVM32: ami-0e5182fad1edfaa68
@@ -17,7 +17,7 @@ Resources:
   TekLoonTestInstance:
     Type: AWS::EC2::Instance
     Properties:
-      AvailabilityZone: ap-southeast-1a
+      AvailabilityZone: us-east-1a
       ImageId: !FindInMap
         - RegionEC2InstanceImageMap
         - !Ref 'AWS::Region'
