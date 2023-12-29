@@ -1,0 +1,47 @@
+name: 'Deploy to AWS CloudFormation'
+
+on: 
+   push:
+     branches: [ main , review ]
+   pull_request:
+     branches: [ main , review ]
+
+  # Allows you to run this workflow manually from the Actions tab
+   workflow_dispatch:
+    inputs:
+      region:
+        description: 'AWS Region to deploy to'
+        required: true
+        default: 'us-east-1'
+
+
+jobs:
+  # This workflow contains a single job called "deploy"
+  sanity-check-workflow:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Extract workflow
+        shell: bash
+        run: "echo ${{ github.workflow }}"
+  sanity-check-ref:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Extract ref
+        shell: bash
+        run: "echo ${{ github.ref }}"
+  sanity-check-pull-request:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Extract branch name
+        shell: bash
+        run: "echo ${{ github.event.pull_request.number }}"
+
+  sleep-timer:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Sleep for 60 seconds
+        run: sleep 60s
+        shell: bash
